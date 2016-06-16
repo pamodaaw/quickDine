@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Message
+{% endblock %}
+
+
+{% block body %}
+
+<div class="container" >
+    <div align="left">
+    {% if type =='success' %}
+        <h2><strong>Enjoy you meal!!!</strong> </h2>
+        <img src="{{ asset('images/success.jpg') }}" alt="quickdine" class="img-responsive" >
+        <div align="center" style = "width: 350px ">
+            <span>
+                Your reservation is made.
+                </br>
+                You will receive an email once the reservation is confirmed.
+            </span>
+            <div align="right"style = "width: 380px ">
+                <a class="btn btn-success" href={{ url(redirect) }}>
+                    <span class="glyphicon glyphicon-arrow-left"></span>Go Back</a>
+            </div>
+        </div>
+
+
+    {% elseif type == 'failure' %}
+        <img src="{{ asset('images/oops.jpg') }}" alt="quickdine" class="img-responsive" >
+        <div align="center" style = "width: 380px ">
+            <span>
+                </br>
+                Your request is unavailable
+                </br>
+                </br>
+            </span>
+            <div align="right"style = "width: 380px ">
+                <a class="btn btn-info" href={{ url(redirect , {'id':id}) }}>
+                    <span class="glyphicon glyphicon-arrow-left"></span>Go Back</a>
+            </div>
+        </div>
+
+        {% elseif type == 'notfound' %}
+            <img src="{{ asset('images/oops.jpg') }}" alt="quickdine" class="img-responsive" >
+            <div align="center" style = "width: 380px ">
+            <span>
+                </br>
+                The item requested is not found
+                </br>
+                </br>
+            </span>
+            </div>
+        {% endif %}
+
+</div>
+{% endblock %}

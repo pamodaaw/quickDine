@@ -1,0 +1,52 @@
+{# app/Resources/views/default/new.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="well">
+            <div class="panel-body">
+                <div class="list-inline" align="right">
+                    <a class="btn btn-info" role="button" href={{ url('update_details',{'id':restaurant.getId}) }}>
+                        <span class="glyphicon glyphicon-edit"></span>Update Profile</a>
+                    <a class="btn btn-info" role="button" href={{ url('offer_create') }}>
+                        <span class="glyphicon glyphicon-plus"></span>Add Offer</a>
+                </div>
+                <span class="col-sm-2" style="fill: 40px">Name</span>
+                <span class="col-sm-10">{{ restaurant.getName }}</span>
+                </br>
+                <span class="col-sm-2" style="fill: 40px">Website URL</span>
+                <span class="col-sm-10">{{ restaurant.getWebsiteUrl }}</span>
+                </br>
+                <span class="col-sm-2 ">Capacity</span>
+                <span class="col-sm-10">{{ restaurant.getCapacity }}</span>
+                </br>
+                <span class="col-sm-2 ">Location</span>
+                <span class="col-sm-10">{{ restaurant.getLocation }}</span>
+                </br>
+                <span class="col-sm-2 control-label required">Cost for two</span>
+                <span class="col-sm-10">{{ restaurant.getCostForTwo }}</span>
+                </br>
+                <span class="col-sm-2 control-label required">Email</span>
+                <span class="col-sm-10">{{ restaurant.getEmail }}</span>
+                </br>
+                <span class="col-sm-2 ">Contact Number</span>
+                <span class="col-sm-10">{{ restaurant.getContactNumber }}</span>
+                </br>
+                <span class="col-sm-2" >Description</span>
+                <span class="col-sm-10 ">{{ restaurant.getDescription }}</span>
+                </br>
+                <span class="col-sm-2">Activate</span>
+                {% if restaurant.getActivate == 0 %}
+                    <div class="col-sm-10"><span>Deactivated</span></div>
+                {% else %}
+                    <div class="col-sm-10"><span>Activated</span></div>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

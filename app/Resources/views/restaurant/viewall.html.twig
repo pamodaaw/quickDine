@@ -1,0 +1,54 @@
+{# app/Resources/views/default/new.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Restaurants
+{% endblock %}
+
+{% block body %}
+
+    <div id='listview'>
+        <span style="font-size: 30px; color: #400592">QuickDine Restaurants Collection</span>
+        {#{% if is_granted ('ROLE_USER') %}#}
+            <div class="list-inline" align="right">
+                <a class= "btn btn-info" role="button"  href={{ url('add_user') }}>
+                    <span class="glyphicon glyphicon-plus"></span>Add User</a>
+            </div>
+        {#{% endif %}#}
+        {% for rest in restaurants %}
+            <div class="item  col-xs-4 col-lg-4 grid-group-item list-group-item">
+                <div class="thumbnail">
+                    <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" width="400" height="250">
+                    <div class="caption">
+                        <h4 class="group inner list-group-item-heading"
+                            style="color:blue; font-size: 250%">{{ rest.getName }}</h4>
+                        <p class="group inner list-group-item-text">
+                            <span class="glyphicon glyphicon-map-marker"> {{ rest.getLocation }}</span>
+                            </br>
+                            <span class="meta"><a href="{{ rest.getWebsiteUrl }}">{{ rest.getWebsiteUrl }}</a>
+                            </span>
+                            </br>
+                            </br>
+                            <span class="meta">{{ rest.getDescription }}</span>
+                            </br>
+                        </p>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <p class="lead">Rs.{{ rest.getCostForTwo }}.00 for two</p>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <a class="btn btn-info" href={{ url('rest_reservation_create',{'id':rest.getId}) }}>
+                                    <span class="glyphicon glyphicon-shopping-cart"></span>Reserve</a>
+                                <a href='{{url('offersByRest', {'id': rest.getId })}}' class="btn btn-info" role="button">
+                                    <span class="glyphicon glyphicon-gift"></span>Offers</a>
+                                <a href='{{url('mealsByRest', {'id': rest.getId})}}' class="btn btn-info" role="button">
+                                    <span class="glyphicon glyphicon-cutlery"></span>Meals</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+

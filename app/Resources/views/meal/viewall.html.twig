@@ -1,0 +1,58 @@
+{# app/Resources/views/default/new.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Meals
+{% endblock %}
+
+{% block body %}
+    <div class="well" style="background-color: transparent; border: transparent">
+
+            <span style="font-size: 30px; color: #400592">QuickDine Meals Collection</span>
+            {% if is_granted ('ROLE_USER') %}
+        <div class="list-inline" align="right">
+                <a class= "btn btn-info" role="button"  href={{ url('meal_create') }}>
+                    <span class="glyphicon glyphicon-plus"></span>Add meal</a>
+        </div>
+            {% endif %}
+
+    </div>
+
+
+    {% for m in meal %}
+        <div class="item  col-xs-4 col-lg-4 grid-group-item">
+            <div class="thumbnail">
+                <img class="group list-group-image" src="{{ asset('images/restaurant2.jpg') }}" alt="" width="400" height="250">
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading"
+                        style="color:blue; font-size: 150%">{{ m.getName }}</h4>
+                    <p class="group inner list-group-item-text">
+                        <span class="meta"> {{ m.getCuisineId.getName }}</span>
+                        </br>
+                        <span class="meta">{{ m.getRestId.getName }}</span>
+                        </br>
+                        </br>
+                        <span class="meta">{{ m.getDescription }}</span>
+                        </br>
+                    </p>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <p class="lead">Rs.{{ m.getCostForTwo }}.00 for two</p>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            {% if not is_granted('ROLE_USER') %}
+                            <a class="btn btn-info" href={{ url('meal_reservation_create',{'id':m.getId}) }}>
+                                <span class="glyphicon glyphicon-shopping-cart"></span>Reserve</a>
+                            {% endif %}
+
+                            {% if is_granted ('ROLE_USER') %}
+                                <a class="btn btn-info" href={{ url('meal_update',{'id':m.getId}) }}>
+                                    <span class="glyphicon glyphicon-edit"></span>Edit</a>
+                                {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

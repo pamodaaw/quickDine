@@ -1,0 +1,58 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Dine Reservations
+{% endblock %}
+
+{% block body %}
+    <div id='listview'>
+        <div class="container">
+            {% for res in reservations %}
+                <div class="item  col-xs-4 col-lg-4 grid-group-item list-group-item">
+                    <div class="col-sm-4 ">
+                        <h4 class="group inner list-group-item-heading">Reservation Details</h4>
+                        <p class="group inner list-group-item-text">
+                            <span class="meta">Date: {{ res.getDate|date("m/d/Y") }}</span>
+                            </br>
+                            <span class="meta">Start Time : {{ res.getStartTime|date("H:i:s") }}</span>
+                            </br>
+                            <span class="meta">End Time : {{ res.getEndTime|date("H:i:s") }}</span>
+                            </br>
+                            <span class="meta">No. Of People : {{ res.getNoOfPeople }}</span>
+                            </br>
+                        </p>
+                    </div>
+                    <div class="col-sm-4 ">
+                        <h4 class="group inner list-group-item-heading">Customer Details</h4>
+                        <span class="meta"> Name: {{ res.getCustomerName }}</span>
+                        </br>
+                        <span class="meta"> Contact Number: {{ res.getContactNumber }}</span>
+                        </br>
+                        <span class="meta"> Email: {{ res.getEmail }}</span>
+                        </br>
+                        </br>
+
+                    </div>
+
+                    <div class="col-sm-4">
+                        {% if res.getConfirmation == false %}
+                            <a class="btn btn-info" href={{ url('rest_reservation_confirm',{'id':res.getId}) }}>
+                                <span class="glyphicon glyphicon-ok"></span>Confirm</a>
+                        {% elseif res.getConfirmation == true %}
+                            <span class="glyphicon glyphicon-ok">Confirmed</span>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+

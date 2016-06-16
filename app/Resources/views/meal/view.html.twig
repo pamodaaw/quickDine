@@ -1,0 +1,24 @@
+{# app/Resources/views/meal/view.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Meal
+{% endblock %}
+
+{% block body %}
+
+<table style="width:100%">
+
+  <tr>
+    <td><b> Meal name:</td>
+    <td>{{meal.getName()}}</td>
+  </tr>
+
+  <tr>
+    <td><b> Description:</td>
+    <td>{{meal.getDescription}}</td>
+  </tr>
+
+</table>
+  <a href='{{url('meal_update', {'id': meal.getId })}}' class="btn btn-info" role="button">Update</a>
+{% endblock %}

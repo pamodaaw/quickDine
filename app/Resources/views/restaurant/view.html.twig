@@ -1,0 +1,29 @@
+{# app/Resources/views/restaurant/view.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Restaurant Details
+{% endblock %}
+
+
+{% block body %}
+
+<div class="container">
+  <span style="font-size: 30px; color: #400592">{{restaurant.getName  }}</span>
+  <div class="list-inline" align="right">
+    <a href='{{url('offersByRest', {'id': restaurant.getId })}}' class="btn btn-info" role="button">
+      <span class="glyphicon glyphicon-gift"></span>Offers</a>
+    <a href='{{url('mealsByRest', {'id': restaurant.getId})}}' class="btn btn-info" role="button">
+      <span class="glyphicon glyphicon-cutlery"></span>Meals</a>
+    <a href='{{url('rest_reservation_create', {'id': restaurant.getId})}}' class="btn btn-info" role="button">
+      <span class="glyphicon glyphicon-shopping-cart"></span>Reserve</a>
+
+  </div>
+ <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" width="600" height="375" align="top"  >
+
+
+</div>
+
+
+
+{% endblock %}

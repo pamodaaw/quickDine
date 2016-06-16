@@ -1,0 +1,54 @@
+{# app/Resources/views/default/new.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Offers
+{% endblock %}
+
+
+{% block body %}
+    <div class="well" style="background-color: transparent; border: transparent">
+        <span style="font-size: 30px; color: #400592">QuickDine Offers </span>
+        {% if is_granted ('ROLE_USER') %}
+            <div class="list-inline" align="right">
+                <a class="btn btn-info" role="button" href={{ url('offer_create') }}>
+                    <span class="glyphicon glyphicon-plus"></span>Add Offer</a>
+            </div>
+        {% endif %}
+    </div>
+    {% for offer in offers %}
+        <div class="item  col-xs-4 col-lg-4 grid-group-item">
+            <div class="thumbnail">
+                <img class="group list-group-image" src="{{ asset('images/restaurant3.jpg') }}" alt="" width="400" height="250" >
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading">{{ offer.getCatchLine }}</h4>
+                    <p class="group inner list-group-item-text">
+                        <span class="meta"> {{ offer.getRestId.getName }}</span>
+                        </br>
+                        </br>
+                        <span class="meta">{{ offer.getDescription }}</span>
+                        </br>
+
+                        <span class="meta">{{ offer.getAvailable }}</span>
+                        </br>
+                    </p>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+
+                            {% if not is_granted('ROLE_USER') %}
+                                <a class="btn btn-info"
+                                   href={{ url('rest_reservation_create',{'id':offer.getRestId.getId}) }}>
+                                    <span class="glyphicon glyphicon-shopping-cart"></span>Reserve</a>
+                            {% endif %}
+
+                            {% if is_granted ('ROLE_USER') %}
+                                <a class="btn btn-info" href={{ url('offer_update',{'id':offer.getId}) }}>
+                                    <span class="glyphicon glyphicon-edit"></span>Edit</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

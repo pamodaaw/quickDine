@@ -1,0 +1,53 @@
+{# app/Resources/views/default/new.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Meal Reservations
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+    {% for res in reservations %}
+
+		<div class="item  col-xs-4 col-lg-4 grid-group-item list-group-item">
+			<div class="col-sm-4">
+				<h4 class="group inner list-group-item-heading">Reservation Details</h4>
+				<p class="group inner list-group-item-text">
+					<span class="meta">Meal: {{ res.getMealID.getCode}}</span>
+					</br>
+					<span class="meta">Date: {{ res.getDate|date("m/d/Y") }}</span>
+					</br>
+					<span class="meta">Time : {{ res.getTime|date("H:i:s") }}</span>
+					</br>
+					<span class="meta">No. Of Items : {{ res.getNoOfItems }}</span>
+					</br>
+				</p>
+			</div>
+			<div class="col-sm-4">
+				<h4 class="group inner list-group-item-heading">Customer Details</h4>
+				<span class="meta"> Name: {{ res.getCustomerName }}</span>
+				</br>
+				<span class="meta"> Contact Number: {{ res.getContactNumber }}</span>
+				</br>
+				<span class="meta"> Email: {{ res.getEmail }}</span>
+				</br>
+
+
+			</div>
+
+			<div class="col-sm-4 ">
+				<a class="btn btn-info" href='#'>
+					<span class="glyphicon glyphicon-ok"></span>Confirm</a>
+			</div>
+		</div>
+	{% endfor %}
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+

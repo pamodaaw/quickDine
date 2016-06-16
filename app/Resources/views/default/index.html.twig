@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+quickDine
+{% endblock %}
+{% block body %}
+
+<div class="panel panel-default">
+  <div class="container">    
+    <div class="col-xs-8 col-xs-offset-2">
+      <div class="input-group">
+        <div class="input-group-btn search-panel">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            <span id="search_concept">Search by</span> <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#contains">Restaurant</a></li>
+            <li><a href="#its_equal">Cuisine</a></li>
+            <li><a href="#greather_than">Location</a></li>
+          </ul>
+        </div>
+        <input type="hidden" name="search_param" value="all" id="search_param">         
+        <input type="text" class="form-control" name="x" placeholder="Search">
+        <span class="input-group-btn">
+           <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+        </span>
+      </div>
+    </div>
+</div>
+
+    <div class="top-row">
+    </br>
+        <div class="container firstlayer ">
+            <div id="myCarousel" class="carousel slide">
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+            
+                <div class="carousel-inner">
+              
+                    <div class="item active">
+                        <img src="{{ asset('images/restaurant1.jpg') }}" alt="quickdine" class="img-responsive" >
+                    </div>
+              
+                    <div class="item">
+                        <img src="{{ asset('images/restaurant2.jpg') }}" alt="quickdine" class="img-responsive" >
+                    </div>
+                      
+                    <div class="item">
+                        <img src="{{ asset('images/restaurant3.jpg') }}" alt="quickdine" class="img-responsive" >
+                    </div>  
+
+                </div>
+
+                <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+                    <span class="icon-prev"></span>
+                </a>
+                <a class="carousel-control right" href="#myCarousel" data-slide="next">
+                    <span class="icon-next"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
